@@ -70,7 +70,7 @@ bot.on("messageCreate", async message => {
             } else {
                 //delete message
                 message.delete();
-                message.send("mfw");
+                message.channel.send("mfw");
             }
             return;
         }
