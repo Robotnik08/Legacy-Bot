@@ -64,14 +64,25 @@ bot.on("messageCreate", async message => {
         //check if in the channel called #mfw
         if(message.channel.name === "mfw") {
             //check if the first word is mfw
-            if(cmd.toLowerCase() === "mfw") {
+            if (message.content.includes("\n")) {
+                message.channel.send("mfw");
+                message.delete();
+                return;
+            }
+            
+            if((cmd.toLowerCase() === "mfw") /* || (messageArray[0].toLowerCase() === "my" && messageArray[1].toLowerCase() === "face" && messageArray[2].toLowerCase() === "when") */) {
                 //react with checkmark
                 message.react("✅");
             } else {
-                //delete message
-                message.delete();
-                message.channel.send("mfw");
+                if(message.mentions.users.first()) {
+                    message.channel.send("mfw <@" + message.author.id + "> tries to ghost ping " + message.mentions.users.first().username);
+                    message.delete();
+                } else {
+                    message.channel.send("mfw");
+                    message.delete();
+                }
             }
+            
             return;
         }
         return;
