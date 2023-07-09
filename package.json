@@ -1,7 +1,7 @@
 {
-  "name": "discord.js-bot-template",
+  "name": "legacy-plus-bot",
   "version": "1.0.0",
-  "description": "basic bot template with command handler",
+  "description": "epic",
   "main": "app.js",
   "dependencies": {
     "asynckit": "^0.4.0",
@@ -16,6 +16,7 @@
     "mime-db": "^1.50.0",
     "mime-types": "^2.1.33",
     "node-fetch": "^3.1.1",
+    "openai": "^3.3.0",
     "ow": "^0.27.0",
     "tr46": "^0.0.3",
     "ts-mixer": "^6.0.0",
