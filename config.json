@@ -1,5 +1,6 @@
 {
     "prefix":"!",
-    "token":"MTExNjM2Mzk3NzA3NzgzMzgwOQ.G0J93b.CrUxyx74iZu7Kf0yb3eJLt7vbrjElrTBDmyUzs",
+    "token":"APITOKEN_HERE",
+    "openaitoken": "APITOKEN_HERE",
     "botid":"1116363977077833809"
 }

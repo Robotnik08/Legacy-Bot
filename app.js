@@ -1,11 +1,11 @@
+const { prefix, token, botid, openaitoken } = require("./config.json");
 const { Configuration, OpenAIApi } = require('openai');
 const configuration = new Configuration({
     organization: "org-GBQZyg5M6nypkyHIOlgQegcQ",
-    apiKey: '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',
+    apiKey: openaitoken,
 });
 const openai = new OpenAIApi(configuration);
 
-const { prefix, token, botid } = require("./config.json");
 const { personality, cores } = require("./personality.json");
 const { bypass, banned} = require("./users.json");
 const maxInput = 150;
@@ -159,7 +159,7 @@ bot.on("messageCreate", async message => {
 });
 function getMemory (memorystrength = 6) {
     const response = [];
-    const days = new Date().getFullYear() % 4 == 0 ? 366 : 365;
+    const days = daysIntoYear(new Date());
     response.push({role: "system", content: personality + getRandomCore(days)});
     for (let i = Math.max(0, memory.length - memorystrength); i < memory.length; i++) {
         response.push(memory[i]);
@@ -168,9 +168,14 @@ function getMemory (memorystrength = 6) {
 }
 function getRandomCore (seed = -1) {
     if (seed == -1) seed = (Math.random()*366)|0;
+    console.log(seed);
     rand = Math.sin(seed) * 10001 - Math.floor(Math.sin(seed) * 10001);
+    console.log(rand);
     console.log(rand * cores.length | 0);
     return cores[rand * cores.length | 0];
+}
+function daysIntoYear(date){
+    return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
 }
 //Token needed in config.json
 bot.login(token);
